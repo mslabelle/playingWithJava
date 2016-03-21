@@ -40,80 +40,49 @@ public class HealthyBurger extends Hamburger{
 
     @Override
     public void receipt(){
-        double total = total();
-        double taxes = calcTaxes(total);
-        double grandTotal = total + taxes;
-
         addition1 = getAddition1();
         addition2 = getAddition2();
         addition3 = getAddition3();
         addition4 = getAddition4();
 
-        if (getAddition1() == null && getAddition2() == null && getAddition3() == null && getAddition4() == null) {
+        double total = getPrice();
+
+        if (addition1 == null && addition2 == null && addition3 == null && addition4 == null && addition5 == null && addition6 == null) {
             System.out.println("Ordered " + getName() + " (" + getName() + ") burger on " + getBread() + "bread, with no additions");
             System.out.println("\nBurger :     $" + getPrice());
         }
 
         else
         {
-            System.out.println("Ordered " + getName().toUpperCase() + " (" + getMeat().toUpperCase() + ") burger on " + getBread().toUpperCase() + " bread, with:");
-
-            System.out.println("\n" + getName().toUpperCase() + " :     $" + getPrice());
-
-            if (addition1 != null)
-                System.out.println(addition1.getName().toUpperCase() + " :    $" + addition1.getPrice());
-
-            if (addition2 != null)
-                System.out.println(addition2.getName().toUpperCase() + " :    $" + addition2.getPrice());
-
-            if (addition3 != null)
-                System.out.println(addition3.getName().toUpperCase() + " :    $" + addition3.getPrice());
-
-            if (addition4 != null)
-                System.out.println(addition4.getName().toUpperCase() + " :    $" + addition4.getPrice());
-
-            if (addition5 != null)
-                System.out.println(addition5.getName().toUpperCase() + " :    $" + addition4.getPrice());
-
-            if (addition6 != null)
-                System.out.println(addition6.getName().toUpperCase() + " :    $" + addition4.getPrice());
+            total = total();
         }
+
+        double taxes = calcTaxes(total);
+        double grandTotal = total + taxes;
 
         System.out.println("\nTotal :       $" + total);
         System.out.println("Tax (5%) :    $" + taxes);
         System.out.println("Grand Total : $" + grandTotal);
     }
 
-    private double total(){
-        double total = getPrice();
+    @Override
+    public double total(){
+        double total = super.total();
 
-        addition1 = getAddition1();
-        addition2 = getAddition2();
-        addition3 = getAddition3();
-        addition4 = getAddition4();
-
-        if (getAddition1() == null && getAddition2() == null && getAddition3() == null && getAddition4() == null && addition5 == null && addition6 == null)
+        if (addition5 == null && addition6 == null)
             return total;
 
         else
         {
-            if (addition1 != null)
-                total += addition1.getPrice();
-
-            if (addition2 != null)
-                total += addition2.getPrice();
-
-            if (addition3 != null)
-                total += addition3.getPrice();
-
-            if (addition4 != null)
-                total += addition4.getPrice();
-
-            if (addition5 != null)
+            if (addition5 != null) {
+                System.out.println(addition5.getName().toUpperCase() + " :    $" + addition5.getPrice());
                 total += addition5.getPrice();
+            }
 
-            if (addition6 != null)
+            if (addition6 != null) {
+                System.out.println(addition6.getName().toUpperCase() + " :    $" + addition6.getPrice());
                 total += addition6.getPrice();
+            }
         }
 
         return total;

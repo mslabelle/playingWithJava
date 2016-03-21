@@ -22,33 +22,19 @@ public class Hamburger {
     }
 
     public void receipt(){
-        double total = total();
-        double taxes = calcTaxes(total);
-        double grandTotal = total + taxes;
+        double total = getPrice();
 
         if (addition1 == null && addition2 == null && addition3 == null && addition4 == null) {
             System.out.println("Ordered " + getName() + " (" + getMeat() + ") burger on " + getBread() + "bread, with no additions");
-            System.out.println("\nBurger :     $" + getPrice());
+            System.out.println("\nBurger :     $" + total);
         }
 
-        else
-        {
-            System.out.println("Ordered " + getName().toUpperCase() + " (" + this.meat.toUpperCase() + ") burger on " + this.bread.toUpperCase() + " bread, with:");
-
-            System.out.println("\n" + getName().toUpperCase() + " :     $" + getPrice());
-
-            if (getAddition1() != null)
-                System.out.println(addition1.getName().toUpperCase() + " :    $" + addition1.getPrice());
-
-            if (getAddition2() != null)
-                System.out.println(addition2.getName().toUpperCase() + " :    $" + addition2.getPrice());
-
-            if (getAddition3() != null)
-                System.out.println(addition3.getName().toUpperCase() + " :    $" + addition3.getPrice());
-
-            if (getAddition4() != null)
-                System.out.println(addition4.getName().toUpperCase() + " :    $" + addition4.getPrice());
+        else {
+            total = total();
         }
+
+        double taxes = calcTaxes(total);
+        double grandTotal = total + taxes;
 
         System.out.println("\nTotal :       $" + total);
         System.out.println("Tax (5%) :    $" + taxes);
@@ -98,6 +84,9 @@ public class Hamburger {
         else if (addition.equalsIgnoreCase("cheese"))
             return new Cheese();
 
+        else
+            System.out.println(addition + " is not available on the menu.");
+
         return null;
     }
 
@@ -106,7 +95,7 @@ public class Hamburger {
         return taxValue;
     }
 
-    private double total(){
+    public double total(){
         double total = price;
 
         if (addition1 == null && addition2 == null && addition3 == null && addition4 == null)
@@ -114,17 +103,29 @@ public class Hamburger {
 
         else
         {
-            if (addition1 != null)
+            System.out.println("Ordered " + getName().toUpperCase() + " (" + getMeat().toUpperCase() + ") burger on " + getBread().toUpperCase() + " bread, with:");
+
+            System.out.println("\n" + getName().toUpperCase() + " :     $" + getPrice());
+
+            if (addition1 != null){
+                System.out.println(addition1.getName().toUpperCase() + " :    $" + addition1.getPrice());
                 total += addition1.getPrice();
+            }
 
-            if (addition2 != null)
+            if (addition2 != null) {
+                System.out.println(addition2.getName().toUpperCase() + " :    $" + addition2.getPrice());
                 total += addition2.getPrice();
+            }
 
-            if (addition3 != null)
+            if (addition3 != null) {
+                System.out.println(addition3.getName().toUpperCase() + " :    $" + addition3.getPrice());
                 total += addition3.getPrice();
+            }
 
-            if (addition4 != null)
+            if (addition4 != null) {
+                System.out.println(addition4.getName().toUpperCase() + " :    $" + addition4.getPrice());
                 total += addition4.getPrice();
+            }
         }
 
         return total;
