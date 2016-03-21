@@ -25,11 +25,12 @@ public class Hamburger {
         double total = getPrice();
 
         if (addition1 == null && addition2 == null && addition3 == null && addition4 == null) {
-            System.out.println("Ordered " + getName() + " (" + getMeat() + ") burger on " + getBread() + "bread, with no additions");
-            System.out.println("\nBurger :     $" + total);
+            System.out.println("Ordered " + getName() + " (" + getName() + ") burger on " + getBread() + "bread, with no additions");
+            System.out.println("\nBurger :     $" + getPrice());
         }
 
-        else {
+        else
+        {
             total = total();
         }
 

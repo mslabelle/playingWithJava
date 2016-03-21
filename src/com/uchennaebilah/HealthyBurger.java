@@ -40,12 +40,12 @@ public class HealthyBurger extends Hamburger{
 
     @Override
     public void receipt(){
+        double total = getPrice();
+
         addition1 = getAddition1();
         addition2 = getAddition2();
         addition3 = getAddition3();
         addition4 = getAddition4();
-
-        double total = getPrice();
 
         if (addition1 == null && addition2 == null && addition3 == null && addition4 == null && addition5 == null && addition6 == null) {
             System.out.println("Ordered " + getName() + " (" + getName() + ") burger on " + getBread() + "bread, with no additions");
